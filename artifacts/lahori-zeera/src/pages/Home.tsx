@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
-const BOTTLE_IMG = `${import.meta.env.BASE_URL}lahori-zeera-bottle.jpg`;
+const BOTTLE_IMG = `${import.meta.env.BASE_URL}lahori-zeera-hero.png`;
 const LEMON_IMG = `${import.meta.env.BASE_URL}lemon-slice.png`;
 const MINT_IMG = `${import.meta.env.BASE_URL}mint-leaf.png`;
 const SPLASH_IMG = `${import.meta.env.BASE_URL}water-splash.png`;
@@ -53,7 +53,7 @@ export default function Home() {
     <div ref={containerRef} className="relative w-full bg-background overflow-hidden selection:bg-primary selection:text-primary-foreground font-sans">
       
       {/* Sticky Bottle Container */}
-      <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center h-screen">
+      <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center h-screen [perspective:1200px]">
         <motion.div
           style={{
             y: bottleY,
@@ -61,16 +61,35 @@ export default function Home() {
             rotate: bottleRotate,
             x: bottleX,
           }}
-          className="relative w-48 md:w-64 lg:w-80 h-auto flex items-center justify-center filter drop-shadow-[0_20px_50px_rgba(163,230,53,0.4)]"
+          className="relative w-64 md:w-80 lg:w-[28rem] h-auto flex items-center justify-center"
         >
-          <img 
-            src={BOTTLE_IMG} 
-            alt="Lahori Zeera Bottle" 
-            className="w-full h-auto object-contain rounded-[40px] mix-blend-normal"
-            style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 1%, black 4%)' }}
-          />
-          {/* Subtle glow behind bottle */}
-          <div className="absolute inset-0 bg-primary/30 blur-3xl -z-10 rounded-full scale-125 mix-blend-screen" />
+          {/* Inner wrapper handles continuous floating + slow Y-axis 3D rotation */}
+          <motion.div
+            className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d]"
+            animate={{
+              y: [0, -18, 0, 18, 0],
+              rotateY: [0, 360],
+            }}
+            transition={{
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+              rotateY: { duration: 14, repeat: Infinity, ease: "linear" },
+            }}
+          >
+            {/* Soft radial glow behind bottle */}
+            <div className="absolute inset-0 -z-10 flex items-center justify-center">
+              <div className="w-[120%] h-[120%] rounded-full bg-[radial-gradient(circle_at_center,_rgba(163,230,53,0.55),_rgba(234,179,8,0.25)_40%,_transparent_70%)] blur-3xl" />
+            </div>
+
+            <img
+              src={BOTTLE_IMG}
+              alt="Lahori Zeera Bottle"
+              draggable={false}
+              className="w-full h-auto object-contain select-none drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+            />
+
+            {/* Soft ground reflection / shadow puddle */}
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[60%] h-8 rounded-[50%] bg-black/40 blur-2xl" />
+          </motion.div>
         </motion.div>
       </div>
 
