@@ -1,0 +1,26 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "An8IsqqUfS0f5W0j5tiy2"
+uri = "file://artifacts/lahori-zeera/public/lemon-slice.png"
+type = "image"
+title = "lemon slice floating"
+
+[[generated]]
+id = "vyVlfcTJestl6qLKO_0sP"
+uri = "file://artifacts/lahori-zeera/public/mint-leaf.png"
+type = "image"
+title = "mint leaf floating"
+
+[[generated]]
+id = "q_IMHTIAOKlqsPHnwmMVQ"
+uri = "file://artifacts/lahori-zeera/public/water-splash.png"
+type = "image"
+title = "splash of water"
+
+[[generated]]
+id = "ihzANpeJcLT9W-QKidtIq"
+uri = "file://artifacts/lahori-zeera/public/ice-cube.png"
+type = "image"
+title = "ice cube"
