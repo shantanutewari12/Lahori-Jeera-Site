@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Contact from "@/pages/Contact";
+import Chatbot from "@/components/Chatbot";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ function App() {
           <Router />
         </WouterRouter>
         <Toaster />
+        <Chatbot />
       </TooltipProvider>
     </QueryClientProvider>
   );
