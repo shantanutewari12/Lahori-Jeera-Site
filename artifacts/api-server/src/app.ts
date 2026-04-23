@@ -3,12 +3,12 @@ import cors from "cors";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
-const pinoHttp = require("pino-http");
+import * as pinoHttp from "pino-http";
 
 const app: Express = express();
 
 app.use(
-  pinoHttp({
+  (pinoHttp as any)({
     logger,
     serializers: {
       req(req: any) {
@@ -24,7 +24,7 @@ app.use(
         };
       },
     },
-  }),
+  })
 );
 
 app.use(cors());
